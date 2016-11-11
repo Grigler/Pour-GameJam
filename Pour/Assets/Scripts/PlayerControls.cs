@@ -3,13 +3,34 @@ using System.Collections;
 
 public class PlayerControls : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	private Rigidbody rb; 
+
+
+	void Start () 
+	{
+		rb = GetComponent<Rigidbody> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	//used to start the pour on the level
+	public void StartPour()
+	{
+		Touch myTouch = Input.GetTouch (0);
+
+		if (Input.touchCount > 0) 
+		{
+			/*if (pour hasnt started)
+			{
+				Start pour
+			}
+			else
+			{
+				break; 
+			}*/
+		}
+	}
+
+	public void PhoneTilt ()
+	{
+		Input.acceleration.x;
 	}
 }
