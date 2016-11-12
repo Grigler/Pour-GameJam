@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class Control : MonoBehaviour {
 
@@ -11,20 +10,16 @@ public class Control : MonoBehaviour {
 		Drink
 	}
 		
-	public bool isEndless;
-	public int endlessLevelCount = 1;
-
-	public const float DRUNK_SCALE_INCREMENT = 0.5f;
 	public float m_drunkScale;
 
 	public float GoalPercentage;
 	private float CurrentPercentage; 
 
-	private const float MAX_DROPLETS_IN_GLASS = 119; //THIS WILL HAVE TO BE CHANGED WITH ADAMS NEW DROPLETS
+	private const int MAX_DROPLETS_IN_GLASS = 500; //CHANGE THIS VALUE, WORK IT OUT!
 
 	private Spout spout;
 	public float spoutPourTime;
-	public List<GameObject> DropletList = new List<GameObject> (); //Added to in spout script
+	public ArrayList DropletList = new ArrayList (); //Added to in spout script
 
 	private GameObject player;
 
@@ -52,26 +47,14 @@ public class Control : MonoBehaviour {
 			spoutPourTime -= Time.deltaTime;
 
 			if (spoutPourTime <= 0) {
-				
+				Debug.Log ("Off");
 				spout.TurnOff ();
-				if (HasWon()) {
-
-					if (isEndless) 
-					{
-						EndlessRunIncrement ();
-						break;
-					}
-
+				if (HasWon ()) {
+					Debug.Log (HasWon ());
 					gameState = e_State.Drink;
 					break;
-				}
-				else
-				{
-					if (isEndless)
-						LoseEndless ();
-					else
-						LoseNormal ();
-				}
+				} else
+					Lose ();
 			}
 
 			//player.GetComponent<CameraUpdate> ().UpdateCamera (GetDrunkForceValue(), Input.acceleration.x);
@@ -89,10 +72,8 @@ public class Control : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		if (gameState == e_State.Play)
-		{
+		if (gameState == e_State.Play) {
 			player.GetComponent<CameraUpdate> ().UpdateCamera (GetDrunkForceValue (), Input.acceleration.x);
-
 			if(Input.GetKey(KeyCode.LeftArrow))
 				player.GetComponent<CameraUpdate> ().UpdateCamera (GetDrunkForceValue (), -1f);
 			else if(Input.GetKey(KeyCode.RightArrow))
@@ -104,23 +85,19 @@ public class Control : MonoBehaviour {
 	float CalculateCurrentPercentageInGlass()
 	{
 		GameObject glass = GameObject.FindGameObjectWithTag ("Player");
-		float numInGlass = 0;
+		int numInGlass = 0;
 
-		const float IN_GLASS_DISTANCE = 1f;
+		const float IN_GLASS_DISTANCE = 0.4f;
 
-		foreach (var i in DropletList)
+		foreach (GameObject i in DropletList)
 		{
-			if (i != null) 
-			{
-				if (Vector2.Distance (glass.transform.position, i.transform.position) <= IN_GLASS_DISTANCE) {
+			if(i != null)
+				if (Vector3.Distance (glass.transform.position, i.transform.position) < IN_GLASS_DISTANCE)
 					numInGlass++;
-				}
-			}
 		}
 
-		Debug.Log ((((numInGlass / MAX_DROPLETS_IN_GLASS) * 100f)) + "%");
-		//Debug.Log(numInGlass);
-		return (numInGlass / MAX_DROPLETS_IN_GLASS) * 100f;
+		Debug.Log ((numInGlass / MAX_DROPLETS_IN_GLASS) * 100);
+		return (numInGlass / MAX_DROPLETS_IN_GLASS) * 100;
 	}
 
 	bool HasWon()
@@ -136,44 +113,11 @@ public class Control : MonoBehaviour {
 		gameState = e_State.Play;
 		spout.TurnOn ();
 	}
-	void LoseNormal()
+	void Lose()
 	{
 		//Do some losing stuff
 	}
-
-	void LoseEndless()
-	{
-		//Do some other losing stuff
-	}
-
-
-	void EndlessRunIncrement()
-	{
-		//reset glass and droplets
-
-		//Switch glass or pour type?
-		//Increse DrunkenNess
-
-		foreach (GameObject i in DropletList)
-		{
-			if(i != null)
-				i.GetComponent<Droplet> ().Kill ();
-		}
-
-		DropletList.Clear ();
-
-		//player.transform.position = player.GetComponent<CameraUpdate> ().InitialPosition;  <-- Breaks shit
-
-		//Visually Indicate new round
-
-		m_drunkScale += DRUNK_SCALE_INCREMENT;
-
-		spoutPourTime = 20f;
-
-		endlessLevelCount++;
-
-		spout.TurnOn ();
-	}
+		
 
 	float GetDrunkForceValue()
 	{
