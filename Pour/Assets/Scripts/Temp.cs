@@ -4,7 +4,7 @@ using System.Collections;
 public class Temp : MonoBehaviour {
 
 	private GameObject m_camera;
-	private float time = 5f;
+	private float time = 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,7 @@ public class Temp : MonoBehaviour {
 	void FixedUpdate () {
 	
 		if(time < 0)
-			m_camera.GetComponent<CameraUpdate> ().UpdateCamera (Random.Range (-3f, 3f), Random.Range (-3f, 3f));
+			m_camera.GetComponent<CameraUpdate> ().UpdateCamera (Random.Range (-18f, 18f), Random.Range (-18f, 18f));
 
 		time -= Time.deltaTime;
 

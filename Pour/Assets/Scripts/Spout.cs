@@ -8,9 +8,9 @@ public class Spout : MonoBehaviour {
 
 	bool isPouring;
 
-	private const float DROPLET_FREQUENCY = 0.2f;
+	private const float DROPLET_FREQUENCY = 0.05f;
 
-	private float dropletTimer = 0.2f;
+	private float dropletTimer = 0.05f;
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +35,7 @@ public class Spout : MonoBehaviour {
 
 		Vector3 dropTrans;
 
-		dropTrans = this.transform.position - (new Vector3 (Random.Range (-1f, 1f), -1f, 0f));
+		dropTrans = this.transform.position - (new Vector3 (Random.Range (-0.25f, 0.25f), 0f, -3f));
 
 		tempDrop = Instantiate(DropPrefab, dropTrans, new Quaternion()) as GameObject;
 

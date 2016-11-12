@@ -3,16 +3,11 @@ using System.Collections;
 
 public class CameraUpdate : MonoBehaviour {
 
-
-	private Transform m_rotationAnchor;
-
 	private float m_rotation = 0.0f;
 	private float m_alpha = 0.5f;
 
 	// Use this for initialization
 	void Start () {
-	
-		m_rotationAnchor = GameObject.FindGameObjectWithTag("Anchor").transform;
 
 	}
 	
@@ -32,6 +27,5 @@ public class CameraUpdate : MonoBehaviour {
 		m_rotation *= 20f;
 
 		this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (m_rotation, 0));
-		Debug.Log (m_rotation);
 	}
 }
