@@ -117,6 +117,7 @@ public class Control : MonoBehaviour {
 	{
 		//Do some losing stuff
 	}
+		
 
 	float GetDrunkForceValue()
 	{
