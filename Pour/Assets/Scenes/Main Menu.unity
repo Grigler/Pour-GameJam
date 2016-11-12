@@ -214,7 +214,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24392434, guid: 595b6495eda36a940a03033bbfcacfaa,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: b8d9fcd1c50c124489e98b6fa021fe2d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bc72e16f9237bd7468d9aecb0054682b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -978,6 +978,22 @@ Prefab:
     - target: {fileID: 6039352, guid: 0b4e215b771c714458d6b2e63f9ed752, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].y
       value: 8.928696
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018306, guid: 0b4e215b771c714458d6b2e63f9ed752, type: 2}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 23347798, guid: 0b4e215b771c714458d6b2e63f9ed752, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23347798, guid: 0b4e215b771c714458d6b2e63f9ed752, type: 2}
+      propertyPath: m_EnableCollision
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23347798, guid: 0b4e215b771c714458d6b2e63f9ed752, type: 2}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b4e215b771c714458d6b2e63f9ed752, type: 2}
@@ -2207,7 +2223,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467159876}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
@@ -2353,9 +2369,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9198c17b9b5c13e4fb88d431591c5dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_drunkScale: 5
-  GoalPercentage: 0
-  spoutPourTime: 20
+  isEndless: 1
+  endlessLevelCount: 1
+  m_drunkScale: 0
+  GoalPercentage: 50
+  spoutPourTime: 5
+  DropletList: []
 --- !u!1 &1790468919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,6 +2449,28 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1790468919}
+--- !u!1 &1828117084 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 189854, guid: 0b4e215b771c714458d6b2e63f9ed752, type: 2}
+  m_PrefabInternal: {fileID: 827968265}
+--- !u!232 &1828117090
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1828117084}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 55.8}
+  m_ConnectedAnchor: {x: 0, y: -2.74}
+  m_AutoConfigureDistance: 1
+  m_Distance: 6.0532165
+  m_MaxDistanceOnly: 1
 --- !u!1 &1925313148
 GameObject:
   m_ObjectHideFlags: 0
