@@ -4,16 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
-	public Transform mainMenu, modeSelect;
+	public Transform mainMenu, levelSelect;
 
 	public void LoadLevel(string newGameLevel)
 	{
 		SceneManager.LoadScene (newGameLevel);
-	}
-
-	public void TryAgain()
-	{
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
 	//changing panels on the main menu
@@ -29,13 +24,13 @@ public class MenuController : MonoBehaviour {
 		}
 	}
 
-	public void MainMenuToModeSelect (bool clicked)
+	public void MainMenuToLevelSelect (bool clicked)
 	{
-		ChangePanel (mainMenu, modeSelect, clicked);
+		ChangePanel (mainMenu, levelSelect, clicked);
 	}
-	public void ModeSelectToMainMenu (bool clicked)
+	public void LevelSelectToMainMenu (bool clicked)
 	{
-		ChangePanel (modeSelect, mainMenu, clicked);
+		ChangePanel (levelSelect, mainMenu, clicked);
 	}
 
 }

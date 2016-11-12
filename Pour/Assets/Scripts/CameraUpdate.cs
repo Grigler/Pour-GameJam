@@ -6,9 +6,11 @@ public class CameraUpdate : MonoBehaviour {
 	private float m_rotation = 0.0f;
 	private float m_alpha = 0.5f;
 
+	public Vector3 InitialPosition;
+
 	// Use this for initialization
 	void Start () {
-
+		InitialPosition = this.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -24,7 +26,7 @@ public class CameraUpdate : MonoBehaviour {
 
 		//this.transform.RotateAround (m_rotationAnchor.position, new Vector3(0f, 0f, 1f), m_rotation);  <--- For translation
 
-		m_rotation *= 20f;
+		m_rotation *= 200f;
 
 		this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (m_rotation, 0));
 	}
